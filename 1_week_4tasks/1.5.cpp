@@ -11,7 +11,7 @@ int main() {
 
     std::cout   << std::setprecision(30) << std::fixed;
 
-    FILE* fp = fopen("test.dat","w");
+//    FILE* fp = fopen("test.dat","w");
 
     for(double t(1.920000000000000000000000000000); t <= 2.080000000000000000000000000000; t += 0.00010000000000000000000000000000){
         result = t - 18;
@@ -27,15 +27,18 @@ int main() {
         double y = result * 1000000000000000;
         double x = t;
         double z = pow(t-2, 9);
+        double res_mnogochlen = pow(t, 9) - 18*pow(t, 8) + 144*pow(t, 7) - 672*pow(t, 6) + 2016*pow(t, 5) - 4032*pow(t, 4)
+                + 5376*pow(t, 3) - 4608*pow(t, 2) +2304*pow(t, 1) - 512;
 
-        fprintf(fp,"%lf\t%lf\t%lf\n", x, y, z);
+//        fprintf(fp,"%lf\t%lf\t%lf\n", x, y, z);
 
-//        std::cout << "\nx0 = " << t << "\ncalculated (x-2)^9 = " << result << std::endl;
-//        std::cout << "exact (x-2)^9 = " << pow(t-2, 9) << std::endl;
-//        std::cout << "error = " << fabs(pow(t-2, 9) - result) << std::endl;
+        std::cout << "\nx0 = " << t << "\ncalculated (x-2)^9 = " << result << std::endl;
+        std::cout << "exact (x-2)^9 = " << pow(t-2, 9) << std::endl;
+        std::cout << "full mnogochlen (x-2)^9 = " << res_mnogochlen << std::endl;
+        std::cout << "error = " << fabs(pow(t-2, 9) - result) << std::endl;
     }
 
-    fclose(fp);
+//    fclose(fp);
 
     return 0;
 }
@@ -44,3 +47,5 @@ int main() {
 //
 //gnuplot> plot "data.txt" using 1:2 title "First",\
 //              "data.txt" using 1:3 title "Second"
+
+
